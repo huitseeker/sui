@@ -26,6 +26,7 @@ scopeguard = "1.1.0"
 curve25519-dalek = "3.2.1"
 structopt = "0.3.26"
 log = "0.4.14"
+thiserror = "1.0.30"
 
 sui-adapter = { path = "../sui_programmability/adapter" }
 sui-framework = { path = "../sui_programmability/framework" }
