@@ -313,7 +313,7 @@ async fn test_handle_transfer_zero_balance() {
     let gas_object =
         Object::with_id_owner_gas_for_testing(gas_object_id, SequenceNumber::new(), sender, 0);
     let gas_object_ref = gas_object.compute_object_reference();
-    authority_state.insert_object(gas_object).await;
+    authority_state.insert_genesis_object(gas_object).await;
 
     let transfer_transaction = init_transfer_transaction(
         sender,
@@ -777,7 +777,7 @@ async fn test_handle_confirmation_transaction_bad_sequence_number() {
         let old_contents = o.contents().to_vec();
         // update object contents, which will increment the sequence number
         o.update_contents(old_contents);
-        authority_state.insert_object(sender_object).await;
+        authority_state.insert_genesis_object(sender_object).await;
     }
 
     // Explanation: providing an old cert that has already need applied
@@ -871,7 +871,7 @@ async fn test_handle_confirmation_transaction_gas() {
         );
 
         let gas_object_ref = gas_object.compute_object_reference();
-        authority_state.insert_object(gas_object).await;
+        authority_state.insert_genesis_object(gas_object).await;
 
         let certified_transfer_transaction = init_certified_transfer_transaction(
             sender,
@@ -1325,7 +1325,7 @@ async fn test_authority_persist() {
     let obj = Object::with_id_owner_for_testing(object_id, recipient);
 
     // Store an object
-    authority.insert_object(obj).await;
+    authority.insert_genesis_object(obj).await;
 
     // Close the authority
     drop(authority);
@@ -1395,7 +1395,7 @@ pub async fn init_state_with_ids<I: IntoIterator<Item = (SuiAddress, ObjectID)>>
     let state = init_state().await;
     for (address, object_id) in objects {
         let obj = Object::with_id_owner_for_testing(object_id, address);
-        state.insert_object(obj).await;
+        state.insert_genesis_object(obj).await;
     }
     state
 }
@@ -1403,7 +1403,7 @@ pub async fn init_state_with_ids<I: IntoIterator<Item = (SuiAddress, ObjectID)>>
 pub async fn init_state_with_objects<I: IntoIterator<Item = Object>>(objects: I) -> AuthorityState {
     let state = init_state().await;
     for o in objects {
-        state.insert_object(o).await;
+        state.insert_genesis_object(o).await;
     }
     state
 }

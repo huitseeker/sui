@@ -28,12 +28,15 @@ const AUTHORITY_REQUEST_TIMEOUT: Duration = Duration::from_secs(60);
 const OBJECT_DOWNLOAD_CHANNEL_BOUND: usize = 1024;
 pub const DEFAULT_RETRIES: usize = 4;
 
+/*
 #[cfg(test)]
 #[path = "unit_tests/gateway_tests.rs"]
 mod gateway_tests;
+*/
 
 pub type AsyncResult<'a, T, E> = future::BoxFuture<'a, Result<T, E>>;
 
+#[derive(Clone)]
 pub struct AuthorityAggregator<A> {
     /// Our Sui committee.
     pub committee: Committee,
@@ -1124,10 +1127,7 @@ where
         Ok((new_certificate, response))
     }
 
-    pub async fn get_object_info_execute(
-        &self,
-        object_id: ObjectID,
-    ) -> Result<ObjectRead, anyhow::Error> {
+    pub async fn get_object_info_execute(&self, object_id: ObjectID) -> SuiResult<ObjectRead> {
         let (object_map, cert_map) = self
             .get_object_by_id(object_id, AUTHORITY_REQUEST_TIMEOUT)
             .await?;
@@ -1166,6 +1166,7 @@ where
                         return Ok(ObjectRead::Exists(obj_ref, obj, layout_option));
                     }
                     None => {
+                        // TODO: Figure out how to find out object being wrapped instead of deleted.
                         return Ok(ObjectRead::Deleted(obj_ref));
                     }
                 };

@@ -899,7 +899,7 @@ impl TransactionEffects {
         false
     }
 
-    pub fn sign(
+    pub fn to_sign_effects(
         self,
         authority_name: &AuthorityName,
         secret: &dyn signature::Signer<AuthoritySignature>,
@@ -912,6 +912,13 @@ impl TransactionEffects {
                 authority: *authority_name,
                 signature,
             },
+        }
+    }
+
+    pub fn to_unsigned_effects(self) -> UnsignedTransactionEffects {
+        UnsignedTransactionEffects {
+            effects: self,
+            auth_signature: EmptyAuthoritySignInfo {},
         }
     }
 }
@@ -950,6 +957,7 @@ pub struct TransactionEffectsEnvelope<S> {
     pub auth_signature: S,
 }
 
+pub type UnsignedTransactionEffects = TransactionEffectsEnvelope<EmptyAuthoritySignInfo>;
 pub type SignedTransactionEffects = TransactionEffectsEnvelope<AuthoritySignInfo>;
 
 impl SignedTransactionEffects {

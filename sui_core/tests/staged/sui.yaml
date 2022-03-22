@@ -724,7 +724,9 @@ SuiError:
               SEQ:
                 TYPENAME: SuiError
     86:
-      ObjectSerializationError: UNIT
+      ObjectSerializationError:
+        STRUCT:
+          - error: STR
     87:
       ConcurrentTransactionError: UNIT
     88:

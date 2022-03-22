@@ -79,16 +79,16 @@ pub fn check_locks(
     Ok(all_objects)
 }
 
-pub fn filter_owned_objects(all_objects: Vec<(InputObjectKind, Object)>) -> Vec<ObjectRef> {
+pub fn filter_owned_objects(all_objects: &[(InputObjectKind, Object)]) -> Vec<ObjectRef> {
     let owned_objects: Vec<_> = all_objects
-        .into_iter()
+        .iter()
         .filter_map(|(object_kind, object)| match object_kind {
             InputObjectKind::MovePackage(_) => None,
             InputObjectKind::OwnedMoveObject(object_ref) => {
                 if object.is_read_only() {
                     None
                 } else {
-                    Some(object_ref)
+                    Some(*object_ref)
                 }
             }
             InputObjectKind::SharedMoveObject(..) => None,
