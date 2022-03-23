@@ -185,13 +185,16 @@ pub trait GatewayAPI {
     async fn get_object_info(&self, object_id: ObjectID) -> Result<ObjectRead, anyhow::Error>;
 
     /// Get refs of all objects we own from local cache.
-    fn get_owned_objects(&mut self, account_addr: SuiAddress) -> Vec<ObjectRef>;
+    async fn get_owned_objects(
+        &mut self,
+        account_addr: SuiAddress,
+    ) -> Result<Vec<ObjectRef>, anyhow::Error>;
 
     /// Fetch objects from authorities
     async fn download_owned_objects_not_in_db(
         &mut self,
         account_addr: SuiAddress,
-    ) -> Result<BTreeSet<ObjectRef>, SuiError>;
+    ) -> Result<BTreeSet<ObjectRef>, anyhow::Error>;
 }
 
 impl AccountState {
@@ -937,19 +940,23 @@ where
         self.authorities.get_object_info_execute(object_id).await
     }
 
-    fn get_owned_objects(&mut self, account_addr: SuiAddress) -> Vec<ObjectRef> {
+    async fn get_owned_objects(
+        &mut self,
+        account_addr: SuiAddress,
+    ) -> Result<Vec<ObjectRef>, anyhow::Error> {
         // Returns empty vec![] if the account cannot be found.
-        self.get_or_create_account(account_addr)
-            .map(|acc| acc.object_refs().map(|(_, r)| r).collect())
-            .unwrap_or_default()
+        Ok(self
+            .get_or_create_account(account_addr)
+            .map(|acc| acc.object_refs().map(|(_, r)| r).collect())?)
     }
 
     async fn download_owned_objects_not_in_db(
         &mut self,
         account_addr: SuiAddress,
-    ) -> Result<BTreeSet<ObjectRef>, SuiError> {
-        let object_refs: Vec<ObjectRef> = self.get_owned_objects(account_addr);
-        self.download_objects_not_in_db(account_addr, object_refs)
-            .await
+    ) -> Result<BTreeSet<ObjectRef>, anyhow::Error> {
+        let object_refs: Vec<ObjectRef> = self.get_owned_objects(account_addr).await?;
+        Ok(self
+            .download_objects_not_in_db(account_addr, object_refs)
+            .await?)
     }
 }

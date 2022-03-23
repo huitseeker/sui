@@ -806,7 +806,7 @@ async fn test_client_state_sync_with_transferred_object() {
 
     // Client 2's local object_id and cert should be empty before sync
     // Query `addr2` once so the client state is created internally in the account manager
-    assert!(client.get_owned_objects(addr2).is_empty());
+    assert!(client.get_owned_objects(addr2).await.unwrap().is_empty());
     let account2 = get_account(&client, addr2);
     assert!(account2.get_owned_objects().is_empty());
     assert!(account2.store().object_refs.is_empty());
