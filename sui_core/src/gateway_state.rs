@@ -185,7 +185,7 @@ pub trait GatewayAPI {
     async fn get_object_info(&self, object_id: ObjectID) -> Result<ObjectRead, anyhow::Error>;
 
     /// Get refs of all objects we own from local cache.
-    async fn get_owned_objects(
+    fn get_owned_objects(
         &mut self,
         account_addr: SuiAddress,
     ) -> Result<Vec<ObjectRef>, anyhow::Error>;
@@ -940,7 +940,7 @@ where
         self.authorities.get_object_info_execute(object_id).await
     }
 
-    async fn get_owned_objects(
+    fn get_owned_objects(
         &mut self,
         account_addr: SuiAddress,
     ) -> Result<Vec<ObjectRef>, anyhow::Error> {
@@ -954,7 +954,7 @@ where
         &mut self,
         account_addr: SuiAddress,
     ) -> Result<BTreeSet<ObjectRef>, anyhow::Error> {
-        let object_refs: Vec<ObjectRef> = self.get_owned_objects(account_addr).await?;
+        let object_refs: Vec<ObjectRef> = self.get_owned_objects(account_addr)?;
         Ok(self
             .download_objects_not_in_db(account_addr, object_refs)
             .await?)

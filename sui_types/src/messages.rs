@@ -309,6 +309,10 @@ where
         self.write(&mut writer);
         writer
     }
+
+    pub fn to_base64(&self) -> String {
+        base64::encode(self.to_bytes())
+    }
 }
 
 /// An transaction signed by a client. signature is applied on data.

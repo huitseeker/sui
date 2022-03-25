@@ -352,7 +352,7 @@ impl WalletCommands {
             }
 
             WalletCommands::Objects { address } => {
-                WalletCommandResult::Objects(context.gateway.get_owned_objects(*address).await?)
+                WalletCommandResult::Objects(context.gateway.get_owned_objects(*address)?)
             }
 
             WalletCommands::SyncClientState { address } => {
@@ -367,7 +367,7 @@ impl WalletCommands {
             }
             WalletCommands::Gas { address } => {
                 context.gateway.sync_account_state(*address).await?;
-                let object_refs = context.gateway.get_owned_objects(*address).await?;
+                let object_refs = context.gateway.get_owned_objects(*address)?;
 
                 // TODO: We should ideally fetch the objects from local cache
                 let mut coins = Vec::new();
