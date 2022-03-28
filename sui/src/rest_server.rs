@@ -607,7 +607,7 @@ Returns the object information for a specified object.
  */
 #[endpoint {
     method = GET,
-    path = "/object_info",
+    path = "/api/object_info",
     tags = [ "wallet" ],
 }]
 async fn object_info(
@@ -664,7 +664,7 @@ Example TransferTransactionRequest
 
 #[endpoint {
     method = POST,
-    path = "api/new_transfer",
+    path = "/api/new_transfer",
     tags = [ "api" ],
 }]
 async fn new_transfer(
@@ -841,7 +841,7 @@ on all objects owned by each address that is managed by this client state.
  */
 #[endpoint {
 method = POST,
-path = "api/execute_transaction",
+path = "/api/execute_transaction",
 tags = [ "api" ],
 }]
 async fn execute_transaction(

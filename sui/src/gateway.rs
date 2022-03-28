@@ -244,7 +244,7 @@ impl GatewayAPI for RestGatewayClient {
     }
 
     async fn get_object_info(&self, object_id: ObjectID) -> Result<ObjectRead, Error> {
-        let url = format!("{}/object_info?objectId={}", self.url, object_id);
+        let url = format!("{}/api/object_info?objectId={}", self.url, object_id);
         let response = reqwest::get(url).await?;
         Ok(response.json().await?)
     }
@@ -253,7 +253,7 @@ impl GatewayAPI for RestGatewayClient {
         &mut self,
         account_addr: SuiAddress,
     ) -> Result<Vec<ObjectRef>, anyhow::Error> {
-        let url = format!("{}/objects?address={}", self.url, account_addr);
+        let url = format!("{}/api/objects?address={}", self.url, account_addr);
         let response = reqwest::blocking::get(url)?;
         let response: ObjectResponse = response.json()?;
         let objects = response
