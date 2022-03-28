@@ -102,7 +102,7 @@ impl SingleTransactionKind {
     pub fn input_objects(&self) -> SuiResult<Vec<InputObjectKind>> {
         let input_objects = match &self {
             Self::Transfer(t) => {
-                vec![InputObjectKind::OwnedMoveObject(t.object_ref)]
+                vec![InputObjectKind::ImmOrOwnedMoveObject(t.object_ref)]
             }
             Self::Call(c) => {
                 let mut call_inputs = Vec::with_capacity(
@@ -112,14 +112,14 @@ impl SingleTransactionKind {
                     c.object_arguments
                         .clone()
                         .into_iter()
-                        .map(InputObjectKind::OwnedMoveObject)
+                        .map(InputObjectKind::ImmOrOwnedMoveObject)
                         .collect::<Vec<_>>(),
                 );
                 call_inputs.extend(
                     c.shared_object_arguments
                         .iter()
                         .cloned()
-                        .map(InputObjectKind::SharedMoveObject)
+                        .map(InputObjectKind::MutSharedMoveObject)
                         .collect::<Vec<_>>(),
                 );
                 call_inputs.push(InputObjectKind::MovePackage(c.package.0));
@@ -724,33 +724,36 @@ impl PartialEq for SignedTransaction {
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum InputObjectKind {
+    // A Move package, must be immutable.
     MovePackage(ObjectID),
-    OwnedMoveObject(ObjectRef),
-    SharedMoveObject(ObjectID),
+    // A Move object, either immutable, or owned mutable.
+    ImmOrOwnedMoveObject(ObjectRef),
+    // A Move object that's shared mutable.
+    MutSharedMoveObject(ObjectID),
 }
 
 impl InputObjectKind {
     pub fn object_id(&self) -> ObjectID {
         match self {
             Self::MovePackage(id) => *id,
-            Self::OwnedMoveObject((id, _, _)) => *id,
-            Self::SharedMoveObject(id) => *id,
+            Self::ImmOrOwnedMoveObject((id, _, _)) => *id,
+            Self::MutSharedMoveObject(id) => *id,
         }
     }
 
     pub fn version(&self) -> SequenceNumber {
         match self {
             Self::MovePackage(..) => OBJECT_START_VERSION,
-            Self::OwnedMoveObject((_, version, _)) => *version,
-            Self::SharedMoveObject(..) => OBJECT_START_VERSION,
+            Self::ImmOrOwnedMoveObject((_, version, _)) => *version,
+            Self::MutSharedMoveObject(..) => OBJECT_START_VERSION,
         }
     }
 
     pub fn object_not_found_error(&self) -> SuiError {
         match *self {
             Self::MovePackage(package_id) => SuiError::DependentPackageNotFound { package_id },
-            Self::OwnedMoveObject((object_id, _, _)) => SuiError::ObjectNotFound { object_id },
-            Self::SharedMoveObject(object_id) => SuiError::ObjectNotFound { object_id },
+            Self::ImmOrOwnedMoveObject((object_id, _, _)) => SuiError::ObjectNotFound { object_id },
+            Self::MutSharedMoveObject(object_id) => SuiError::ObjectNotFound { object_id },
         }
     }
 }
@@ -844,7 +847,7 @@ impl Transaction {
                 result
             }
         };
-        inputs.push(InputObjectKind::OwnedMoveObject(
+        inputs.push(InputObjectKind::ImmOrOwnedMoveObject(
             *self.gas_payment_object_ref(),
         ));
         Ok(inputs)
