@@ -602,82 +602,86 @@ SuiError:
     51:
       SubscriptionServiceClosed: UNIT
     52:
-      ModuleLoadFailure:
+      CheckpointingError:
         STRUCT:
           - error: STR
     53:
-      ModuleVerificationFailure:
+      ModuleLoadFailure:
         STRUCT:
           - error: STR
     54:
-      ModuleDeserializationFailure:
+      ModuleVerificationFailure:
         STRUCT:
           - error: STR
     55:
-      ModulePublishFailure:
+      ModuleDeserializationFailure:
         STRUCT:
           - error: STR
     56:
-      ModuleBuildFailure:
+      ModulePublishFailure:
         STRUCT:
           - error: STR
     57:
+      ModuleBuildFailure:
+        STRUCT:
+          - error: STR
+    58:
       DependentPackageNotFound:
         STRUCT:
           - package_id:
               TYPENAME: ObjectID
-    58:
+    59:
       MoveUnitTestFailure:
         STRUCT:
           - error: STR
-    59:
+    60:
       FunctionNotFound:
         STRUCT:
           - error: STR
-    60:
+    61:
       ModuleNotFound:
         STRUCT:
           - module_name: STR
-    61:
+    62:
       InvalidFunctionSignature:
         STRUCT:
           - error: STR
-    62:
+    63:
       TypeError:
         STRUCT:
           - error: STR
-    63:
+    64:
       AbortedExecution:
         STRUCT:
           - error: STR
-    64:
+    65:
       InvalidMoveEvent:
         STRUCT:
           - error: STR
-    65:
-      CircularObjectOwnership: UNIT
     66:
+      CircularObjectOwnership: UNIT
+    67:
       GasBudgetTooHigh:
         STRUCT:
           - error: STR
-    67:
+    68:
       InsufficientGas:
         STRUCT:
           - error: STR
-    68:
-      InvalidTxUpdate: UNIT
     69:
-      TransactionLockExists: UNIT
+      InvalidTxUpdate: UNIT
     70:
-      TransactionLockDoesNotExist: UNIT
+      TransactionLockExists: UNIT
     71:
-      TransactionLockReset: UNIT
+      TransactionLockDoesNotExist: UNIT
     72:
+      TransactionLockReset: UNIT
+    73:
       ObjectNotFound:
         STRUCT:
           - object_id:
               TYPENAME: ObjectID
-    73:
+    74:
       ObjectDeleted:
         STRUCT:
           - object_ref:
@@ -685,26 +689,26 @@ SuiError:
                 - TYPENAME: ObjectID
                 - TYPENAME: SequenceNumber
                 - TYPENAME: ObjectDigest
-    74:
+    75:
       BadObjectType:
         STRUCT:
           - error: STR
-    75:
-      MoveExecutionFailure: UNIT
     76:
-      ObjectInputArityViolation: UNIT
+      MoveExecutionFailure: UNIT
     77:
-      ExecutionInvariantViolation: UNIT
+      ObjectInputArityViolation: UNIT
     78:
-      AuthorityInformationUnavailable: UNIT
+      ExecutionInvariantViolation: UNIT
     79:
-      AuthorityUpdateFailure: UNIT
+      AuthorityInformationUnavailable: UNIT
     80:
+      AuthorityUpdateFailure: UNIT
+    81:
       ByzantineAuthoritySuspicion:
         STRUCT:
           - authority:
               TYPENAME: PublicKeyBytes
-    81:
+    82:
       PairwiseSyncFailed:
         STRUCT:
           - xsource:
@@ -715,29 +719,29 @@ SuiError:
               TYPENAME: TransactionDigest
           - error:
               TYPENAME: SuiError
-    82:
+    83:
       StorageError:
         NEWTYPE:
           TYPENAME: TypedStoreError
-    83:
-      BatchErrorSender: UNIT
     84:
+      BatchErrorSender: UNIT
+    85:
       GenericAuthorityError:
         STRUCT:
           - error: STR
-    85:
+    86:
       QuorumNotReached:
         STRUCT:
           - errors:
               SEQ:
                 TYPENAME: SuiError
-    86:
-      ObjectSerializationError: UNIT
     87:
-      ConcurrentTransactionError: UNIT
+      ObjectSerializationError: UNIT
     88:
-      IncorrectRecipientError: UNIT
+      ConcurrentTransactionError: UNIT
     89:
+      IncorrectRecipientError: UNIT
+    90:
       TooManyIncorrectAuthorities:
         STRUCT:
           - errors:
@@ -745,11 +749,11 @@ SuiError:
                 TUPLE:
                   - TYPENAME: PublicKeyBytes
                   - TYPENAME: SuiError
-    90:
+    91:
       InconsistentGatewayResult:
         STRUCT:
           - error: STR
-    91:
+    92:
       OnlyOneConsensusClientPermitted: UNIT
 Transaction:
   STRUCT:
