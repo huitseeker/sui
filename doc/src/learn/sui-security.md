@@ -88,7 +88,7 @@ All transactions in Sui have to be associated with a gas asset to cover the cost
 transaction may result in a status of successful execution or an aborted execution. An execution may abort due to a 
 condition within the smart contract defining the asset, or because it has ran out of sufficient gas to pay for
 the cost of execution. In cases of success, the effects of the operation will be finalized; otherwise, the state of 
-assets in the transaction is not changed. However, the gas asset is always charged some amount of gas, to aleviate
+assets in the transaction is not changed. However, the gas asset is always charged some amount of gas, to alleviate
 denial-of-service attacks on the system as a whole.
 
 A user client can perform the process of submitting the transaction and certificate itself or rely on third party 
