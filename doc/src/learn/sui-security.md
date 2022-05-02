@@ -2,7 +2,7 @@
 title: Understand Sui Security
 ---
 
-This page provides an overview of the major guarantees Sui provides in terms of Security.
+This page proiveds an overview of the major guarantees Sui provides in terms of Security.
 
 Sui asset owners
 and smart contract designers can start learning here about the mechanisms available to secure their
