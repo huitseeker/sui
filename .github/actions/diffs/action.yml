@@ -24,3 +24,7 @@ runs:
         isExplorerClient:
           - 'explorer/client/**'
           - '.github/workflows/explorer-client-prs.yml'
+        isDoc:
+          - 'doc/**'
+          - '*.md'
+          - '.github/workflows/docs.yml'
