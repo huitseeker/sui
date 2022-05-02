@@ -2,7 +2,7 @@
 title: Examples of Sui Smart Contracts
 ---
 
-Find sample Sui smart contract implementations in the [sui_programmability/examples](https://github.com/MystenLabs/sui/tree/main/sui_programmability/examples) directory. Here is a rundown of existing examples.
+Find sample Sui smart contract implmentations in the [sui_programmability/examples](https://github.com/MystenLabs/sui/tree/main/sui_programmability/examples) directory. Here is a rundown of existing examples.
 
 ## Basics
 
