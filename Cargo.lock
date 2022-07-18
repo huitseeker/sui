@@ -753,6 +753,7 @@ dependencies = [
  "libc",
  "num-integer",
  "num-traits 0.2.15",
+ "serde 1.0.137",
  "time 0.1.43",
  "winapi",
 ]
@@ -1166,7 +1167,7 @@ dependencies = [
  "readonly",
  "serde 1.0.137",
  "serde_bytes",
- "serde_with",
+ "serde_with 1.14.0",
  "signature",
  "tokio",
  "zeroize",
@@ -1265,7 +1266,7 @@ dependencies = [
  "once_cell",
  "rayon",
  "serde 1.0.137",
- "serde_with",
+ "serde_with 1.14.0",
  "thiserror",
 ]
 
@@ -2370,6 +2371,7 @@ checksum = "0f647032dfaa1f8b6dc29bd3edb7bbef4861b8b8007ebb118d6db284fd59f6ee"
 dependencies = [
  "autocfg",
  "hashbrown 0.11.2",
+ "serde 1.0.137",
 ]
 
 [[package]]
@@ -5126,14 +5128,28 @@ dependencies = [
 
 [[package]]
 name = "serde_with"
-version = "1.13.0"
+version = "1.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b827f2113224f3f19a665136f006709194bdfdcb1fdc1e4b2b5cbac8e0cced54"
+checksum = "678b5a069e50bf00ecd22d0cd8ddf7c236f68581b03db652061ed5eb13a312ff"
 dependencies = [
- "hex",
- "rustversion",
  "serde 1.0.137",
- "serde_with_macros",
+ "serde_with_macros 1.5.2",
+]
+
+[[package]]
+name = "serde_with"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "89df7a26519371a3cce44fbb914c2819c84d9b897890987fa3ab096491cc0ea8"
+dependencies = [
+ "base64",
+ "chrono",
+ "hex",
+ "indexmap",
+ "serde 1.0.137",
+ "serde_json",
+ "serde_with_macros 2.0.0",
+ "time 0.3.9",
 ]
 
 [[package]]
@@ -5143,6 +5159,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e182d6ec6f05393cc0e5ed1bf81ad6db3a8feedf8ee515ecdd369809bcce8082"
 dependencies = [
  "darling 0.13.4",
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "serde_with_macros"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de337f322382fcdfbb21a014f7c224ee041a23785651db67b9827403178f698f"
+dependencies = [
+ "darling 0.14.1",
  "proc-macro2",
  "quote",
  "syn",
@@ -5484,7 +5512,7 @@ dependencies = [
  "serde-name",
  "serde-value",
  "serde_json",
- "serde_with",
+ "serde_with 2.0.0",
  "shell-words",
  "strum",
  "strum_macros",
@@ -5558,7 +5586,7 @@ dependencies = [
  "rand 0.7.3",
  "serde 1.0.137",
  "serde_json",
- "serde_with",
+ "serde_with 2.0.0",
  "sui-adapter",
  "sui-framework",
  "sui-types",
@@ -5605,7 +5633,7 @@ dependencies = [
  "serde 1.0.137",
  "serde-reflection",
  "serde_json",
- "serde_with",
+ "serde_with 2.0.0",
  "serde_yaml",
  "signature",
  "sui-adapter",
@@ -5706,7 +5734,7 @@ dependencies = [
  "schemars",
  "serde 1.0.137",
  "serde_json",
- "serde_with",
+ "serde_with 2.0.0",
  "sui-config",
  "sui-core",
  "sui-json",
@@ -5872,7 +5900,7 @@ dependencies = [
  "serde-name",
  "serde_bytes",
  "serde_json",
- "serde_with",
+ "serde_with 2.0.0",
  "sha2 0.10.2",
  "sha3 0.10.1",
  "signature",
@@ -6184,6 +6212,7 @@ dependencies = [
  "itoa 1.0.1",
  "libc",
  "num_threads",
+ "serde 1.0.137",
  "time-macros",
 ]
 
