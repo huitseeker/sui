@@ -91,7 +91,7 @@ collectable = { version = "0.0.2", default-features = false }
 colored = { version = "2", default-features = false }
 colored-diff = { version = "0.2", default-features = false }
 combine = { version = "4", features = ["alloc", "bytes", "std"] }
-config-402f0f40fede99d = { package = "config", git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", default-features = false }
+config-7b3765ec9cc18298 = { package = "config", git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", default-features = false }
 config-a6292c17cd707f01 = { package = "config", version = "0.11", features = ["hjson", "ini", "json", "rust-ini", "serde-hjson", "serde_json", "toml", "yaml", "yaml-rust"] }
 consensus = { git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", features = ["benchmark", "rand"] }
 console = { version = "0.15", default-features = false }
@@ -668,7 +668,7 @@ collectable = { version = "0.0.2", default-features = false }
 colored = { version = "2", default-features = false }
 colored-diff = { version = "0.2", default-features = false }
 combine = { version = "4", features = ["alloc", "bytes", "std"] }
-config-402f0f40fede99d = { package = "config", git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", default-features = false }
+config-7b3765ec9cc18298 = { package = "config", git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", default-features = false }
 config-a6292c17cd707f01 = { package = "config", version = "0.11", features = ["hjson", "ini", "json", "rust-ini", "serde-hjson", "serde_json", "toml", "yaml", "yaml-rust"] }
 consensus = { git = "https://github.com/MystenLabs/narwhal", rev = "d67e27d33b8515f919f45694660fceb20db626c4", features = ["benchmark", "rand"] }
 console = { version = "0.15", default-features = false }
