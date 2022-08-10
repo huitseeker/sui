@@ -14,7 +14,6 @@ use std::path::{Path, PathBuf};
 use std::str::FromStr;
 
 use bip39::Mnemonic;
-use rand::rngs::adapter::ReadRng;
 
 use sui_types::base_types::SuiAddress;
 use sui_types::crypto::{
@@ -153,7 +152,9 @@ impl SuiKeystore {
     pub fn generate_new_key(&mut self) -> Result<(SuiAddress, String), anyhow::Error> {
         let mnemonic = Mnemonic::generate(12)?;
         let seed = mnemonic.to_seed("");
-        let mut rng = RngWrapper(ReadRng::new(&seed));
+        let mut seed_bytes = [0; 32];
+        seed_bytes.copy_from_slice(&seed[0..32]);
+        let mut rng = StdRng::from_seed(seed_bytes);
         let (address, kp) = get_key_pair_from_rng(&mut rng);
         self.0.add_key(kp)?;
         Ok((address, mnemonic.to_string()))
@@ -173,7 +174,11 @@ impl SuiKeystore {
 
     pub fn import_from_mnemonic(&mut self, phrase: &str) -> Result<SuiAddress, anyhow::Error> {
         let seed = &Mnemonic::from_str(phrase).unwrap().to_seed("");
-        let mut rng = RngWrapper(ReadRng::new(seed));
+
+        let mut seed_bytes = [0; 32];
+        seed_bytes.copy_from_slice(&seed[0..32]);
+        let mut rng = StdRng::from_seed(seed_bytes);
+
         let (address, kp) = get_key_pair_from_rng(&mut rng);
         self.0.add_key(kp)?;
         Ok(address)
@@ -181,28 +186,6 @@ impl SuiKeystore {
 
     pub fn sign(&self, address: &SuiAddress, msg: &[u8]) -> Result<Signature, signature::Error> {
         self.0.sign(address, msg)
-    }
-}
-
-/// wrapper for adding CryptoRng and RngCore impl to ReadRng.
-struct RngWrapper<'a>(ReadRng<&'a [u8]>);
-
-impl rand::CryptoRng for RngWrapper<'_> {}
-impl rand::RngCore for RngWrapper<'_> {
-    fn next_u32(&mut self) -> u32 {
-        self.0.next_u32()
-    }
-
-    fn next_u64(&mut self) -> u64 {
-        self.0.next_u64()
-    }
-
-    fn fill_bytes(&mut self, dest: &mut [u8]) {
-        self.0.fill_bytes(dest)
-    }
-
-    fn try_fill_bytes(&mut self, dest: &mut [u8]) -> Result<(), rand::Error> {
-        self.0.try_fill_bytes(dest)
     }
 }
 
