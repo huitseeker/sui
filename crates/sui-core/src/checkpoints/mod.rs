@@ -82,9 +82,9 @@ pub trait ConsensusSender: Send + Sync + 'static {
 
 #[derive(Debug, Error)]
 pub enum FragmentInternalError {
-    #[error("Sui Error")]
+    #[error("Failed to process checkpoint fragment")]
     Error(SuiError),
-    #[error("Retry error")]
+    #[error("Failed to sequence checkpoint fragment")]
     Retry(Box<CheckpointFragment>),
 }
 
