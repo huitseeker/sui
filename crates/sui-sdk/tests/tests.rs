@@ -28,7 +28,7 @@ fn mnemonic_test() {
 fn sui_wallet_address_mnemonic_test() -> Result<(), anyhow::Error> {
     // Recovery phase and SuiAddress obtained from Sui wallet v0.0.4 (prior key flag changes)
     let phrase = "oil puzzle immense upon pony govern jelly neck portion laptop laptop wall";
-    let expected_address = SuiAddress::from_str("0x6a06dd564dfb2f0c71f3e167a48f569c705ed34c")?;
+    let expected_address = SuiAddress::from_str("0x39241d19dd4204f5df561182703a3d8ac45999d9")?;
 
     let temp_dir = TempDir::new().unwrap();
     let keystore_path = temp_dir.path().join("sui.keystore");
