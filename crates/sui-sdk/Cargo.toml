@@ -25,7 +25,6 @@ sui-types = { path = "../sui-types" }
 sui-json = { path = "../sui-json" }
 sui-core = { path = "../sui-core" }
 sui-config = { path = "../sui-config" }
-
 workspace-hack = { path = "../workspace-hack"}
 
 [dev-dependencies]

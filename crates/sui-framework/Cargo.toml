@@ -27,7 +27,7 @@ move-stdlib = { git = "https://github.com/move-language/move", rev = "7907152852
 move-unit-test = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
 move-vm-runtime = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
 move-vm-types = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
-narwhal-crypto = { git = "https://github.com/MystenLabs/narwhal", rev = "b3728f80dd3e467c27d1b5426d95e2beeaf60178", package = "crypto" }
+narwhal-crypto = { git = "https://github.com/MystenLabs/narwhal", rev = "49890f08588dc16389b1686642f43f54b0581135", package = "crypto" }
 workspace-hack = { path = "../workspace-hack"}
 
 [build-dependencies]

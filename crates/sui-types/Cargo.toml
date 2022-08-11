@@ -37,8 +37,8 @@ strum_macros = "^0.24"
 roaring = "0.9.0"
 enum_dispatch = "^0.3"
 
-name-variant = { git = "https://github.com/MystenLabs/mysten-infra", rev = "d965a5a795dcdb4d1c7964acf556bc249fdc58aa" }
-typed-store = { git = "https://github.com/MystenLabs/mysten-infra", rev = "d965a5a795dcdb4d1c7964acf556bc249fdc58aa" }
+name-variant = { git = "https://github.com/MystenLabs/mysten-infra", rev = "f4aa523d3029bd6a23bead5f04c182f2cfa04c5e" }
+typed-store = { git = "https://github.com/MystenLabs/mysten-infra", rev = "f4aa523d3029bd6a23bead5f04c182f2cfa04c5e" }
 
 move-binary-format = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
 move-bytecode-utils = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
@@ -47,9 +47,8 @@ move-disassembler = { git = "https://github.com/move-language/move", rev = "7907
 move-ir-types = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
 move-vm-types = { git = "https://github.com/move-language/move", rev = "79071528524f08b12e9abb84c1094d8e976aa17a" }
 
-narwhal-executor = { git = "https://github.com/MystenLabs/narwhal", rev = "b3728f80dd3e467c27d1b5426d95e2beeaf60178", package = "executor" }
-narwhal-crypto = { git = "https://github.com/MystenLabs/narwhal", rev = "b3728f80dd3e467c27d1b5426d95e2beeaf60178", package = "crypto" }
-
+narwhal-executor = { git = "https://github.com/MystenLabs/narwhal", rev = "49890f08588dc16389b1686642f43f54b0581135", package = "executor" }
+narwhal-crypto = { git = "https://github.com/MystenLabs/narwhal", rev = "49890f08588dc16389b1686642f43f54b0581135", package = "crypto" }
 workspace-hack = { path = "../workspace-hack"}
 
 [dev-dependencies]
