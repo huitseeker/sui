@@ -101,7 +101,7 @@ const-oid = { version = "0.9", default-features = false }
 constant_time_eq = { version = "0.1", default-features = false }
 core2 = { version = "0.4", default-features = false, features = ["alloc"] }
 crc = { version = "2", default-features = false }
-crc-catalog = { version = "1", default-features = false }
+crc-catalog = { version = "2", default-features = false }
 criterion = { version = "0.3", features = ["cargo_bench_support"] }
 criterion-plot = { version = "0.4", default-features = false }
 crossbeam = { version = "0.8", features = ["alloc", "crossbeam-channel", "crossbeam-deque", "crossbeam-epoch", "crossbeam-queue", "std"] }
@@ -699,7 +699,7 @@ const-oid = { version = "0.9", default-features = false }
 constant_time_eq = { version = "0.1", default-features = false }
 core2 = { version = "0.4", default-features = false, features = ["alloc"] }
 crc = { version = "2", default-features = false }
-crc-catalog = { version = "1", default-features = false }
+crc-catalog = { version = "2", default-features = false }
 criterion = { version = "0.3", features = ["cargo_bench_support"] }
 criterion-plot = { version = "0.4", default-features = false }
 crossbeam = { version = "0.8", features = ["alloc", "crossbeam-channel", "crossbeam-deque", "crossbeam-epoch", "crossbeam-queue", "std"] }
