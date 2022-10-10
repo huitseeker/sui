@@ -32,7 +32,7 @@ jobs:
     name: Run test on the beta channel
     runs-on: [self-hosted, self-hosted-arc]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - name: Install beta toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -52,7 +52,7 @@ jobs:
     name: build release binaries
     runs-on: [self-hosted, self-hosted-arc]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
       - name: cargo build
         uses: actions-rs/cargo@v1
@@ -63,7 +63,7 @@ jobs:
   cargo-udeps:
     runs-on: [self-hosted, self-hosted-arc]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
       # Enable caching of the 'librocksdb-sys' crate by additionally caching the
       # 'librocksdb-sys' src directory which is managed by cargo

@@ -34,7 +34,7 @@ jobs:
     outputs:
       isRust: ${{ steps.diff.outputs.isRust }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
     - name: Detect Changes
       uses: './.github/actions/diffs'
       id: diff
@@ -43,7 +43,7 @@ jobs:
     name: license-check
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
       - uses: bmwill/rust-cache@v1 # Fork of 'Swatinem/rust-cache' which allows caching additional paths
       - name: Install cargo-hakari, and cache the binary
@@ -69,7 +69,7 @@ jobs:
           - [self-hosted, windows]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
       # The install script for nextest doesn't work on windows (very linux/bash
       # specific) so the windows builders already have the binaries installed.
@@ -108,7 +108,7 @@ jobs:
     if: needs.diff.outputs.isRust == 'true'
     runs-on: [self-hosted, self-hosted-arc]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
         with:
           components: clippy
@@ -126,7 +126,7 @@ jobs:
     if: needs.diff.outputs.isRust == 'true'
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
       - uses: actions-rs/toolchain@v1
         with:
           components: rustfmt
@@ -142,5 +142,5 @@ jobs:
     if: needs.diff.outputs.isRust == 'true'
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.1.0
     - uses: EmbarkStudios/cargo-deny-action@v1
