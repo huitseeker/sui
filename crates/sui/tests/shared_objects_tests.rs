@@ -34,7 +34,7 @@ async fn shared_object_transaction() {
 
     // Submit the transaction. Note that this transaction is random and we do not expect
     // it to be successfully executed by the Move execution engine.
-    let _effects = submit_shared_object_transaction(transaction, &configs.validator_set()[0..1])
+    let _effects = submit_shared_object_transaction(transaction, configs.validator_set())
         .await
         .unwrap();
 }
@@ -102,7 +102,7 @@ async fn call_shared_object_contract() {
             CallArg::Pure(0u64.to_le_bytes().to_vec()),
         ],
     );
-    let effects = submit_shared_object_transaction(transaction, &configs.validator_set()[0..1])
+    let effects = submit_shared_object_transaction(transaction, configs.validator_set())
         .await
         .unwrap();
     assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
@@ -115,7 +115,7 @@ async fn call_shared_object_contract() {
         package_ref,
         vec![CallArg::Object(counter_object_arg)],
     );
-    let effects = submit_shared_object_transaction(transaction, &configs.validator_set()[0..1])
+    let effects = submit_shared_object_transaction(transaction, configs.validator_set())
         .await
         .unwrap();
     assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
@@ -131,7 +131,7 @@ async fn call_shared_object_contract() {
             CallArg::Pure(1u64.to_le_bytes().to_vec()),
         ],
     );
-    let effects = submit_shared_object_transaction(transaction, &configs.validator_set()[0..1])
+    let effects = submit_shared_object_transaction(transaction, configs.validator_set())
         .await
         .unwrap();
     assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
@@ -238,7 +238,7 @@ async fn shared_object_sync() {
     );
     let effects = submit_single_owner_transaction(
         create_counter_transaction.clone(),
-        &configs.validator_set()[0..1],
+        configs.validator_set(),
     )
     .await;
     assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
@@ -279,10 +279,10 @@ async fn shared_object_sync() {
         vec![CallArg::Object(counter_object_arg)],
     );
 
-    // Let's submit the transaction to the first authority (the only one up-to-date).
+    // Let's submit the transaction to one authority (including only one up-to-date).
     let effects = submit_shared_object_transaction(
         increment_counter_transaction.clone(),
-        &configs.validator_set()[0..1],
+        &configs.validator_set()[0..4],
     )
     .await
     .unwrap();
@@ -290,12 +290,10 @@ async fn shared_object_sync() {
 
     // Submit transactions to out-of-date authorities.
     // It will succeed because we share owned object certificates through narwhal
-    let effects = submit_shared_object_transaction(
-        increment_counter_transaction,
-        &configs.validator_set()[1..],
-    )
-    .await
-    .unwrap();
+    let effects =
+        submit_shared_object_transaction(increment_counter_transaction, &configs.validator_set())
+            .await
+            .unwrap();
     assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
 }
 
@@ -324,7 +322,7 @@ async fn replay_shared_object_transaction() {
     for _ in 0..2 {
         let effects = submit_single_owner_transaction(
             create_counter_transaction.clone(),
-            &configs.validator_set()[0..1],
+            configs.validator_set(),
         )
         .await;
         assert!(matches!(effects.status, ExecutionStatus::Success { .. }));
