@@ -1370,7 +1370,7 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e57ff02e8ad8e06ab9731d5dc72dc23bef9200778eae1a89d555d8c42e5d4a86"
 dependencies = [
- "prost 0.11.0",
+ "prost 0.11.2",
  "prost-types",
  "tonic",
  "tracing-core",
@@ -5051,7 +5051,7 @@ version = "0.1.0"
 dependencies = [
  "base64",
  "clap 2.34.0",
- "prost 0.11.0",
+ "prost 0.11.2",
  "protobuf-src",
  "tokio",
  "tonic",
@@ -5221,7 +5221,7 @@ dependencies = [
  "once_cell",
  "prometheus",
  "proptest",
- "prost 0.10.4",
+ "prost 0.11.2",
  "rand 0.8.5",
  "reqwest",
  "roaring",
@@ -5330,7 +5330,7 @@ dependencies = [
  "prometheus",
  "proptest",
  "proptest-derive",
- "prost 0.11.0",
+ "prost 0.11.2",
  "prost-build",
  "protobuf-src",
  "rand 0.8.5",
@@ -6491,9 +6491,9 @@ dependencies = [
 
 [[package]]
 name = "prost"
-version = "0.11.0"
+version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "399c3c31cdec40583bb68f0b18403400d01ec4289c383aa047560439952c4dd7"
+checksum = "a0841812012b2d4a6145fae9a6af1534873c32aa67fff26bd09f8fa42c83f95a"
 dependencies = [
  "bytes",
  "prost-derive 0.11.0",
@@ -6512,7 +6512,7 @@ dependencies = [
  "log",
  "multimap",
  "petgraph 0.6.2",
- "prost 0.11.0",
+ "prost 0.11.2",
  "prost-types",
  "regex",
  "tempfile",
@@ -6552,7 +6552,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4dfaa718ad76a44b3415e6c4d53b17c8f99160dcb3a99b10470fce8ad43f6e3e"
 dependencies = [
  "bytes",
- "prost 0.11.0",
+ "prost 0.11.2",
 ]
 
 [[package]]
@@ -9661,7 +9661,7 @@ dependencies = [
  "hyper-timeout",
  "percent-encoding",
  "pin-project",
- "prost 0.11.0",
+ "prost 0.11.2",
  "prost-derive 0.11.0",
  "rustls-pemfile 1.0.1",
  "tokio",
@@ -9696,7 +9696,7 @@ checksum = "632faf60b81a5b5f439d9635102b2b2921ee39171faf14f3e0008d99f98689f1"
 dependencies = [
  "async-stream",
  "bytes",
- "prost 0.11.0",
+ "prost 0.11.2",
  "tokio",
  "tokio-stream",
  "tonic",
@@ -11103,7 +11103,7 @@ dependencies = [
  "proptest",
  "proptest-derive",
  "prost 0.10.4",
- "prost 0.11.0",
+ "prost 0.11.2",
  "prost-build",
  "prost-derive 0.10.1",
  "prost-derive 0.11.0",
