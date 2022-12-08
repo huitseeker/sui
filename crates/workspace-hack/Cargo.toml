@@ -190,8 +190,8 @@ ethnum = { version = "1", default-features = false }
 event-listener = { version = "2", default-features = false }
 eyre = { version = "0.6", features = ["auto-install", "track-caller"] }
 fail = { version = "0.4", default-features = false }
-fastcrypto = { git = "https://github.com/MystenLabs/fastcrypto", rev = "3ac9fa490f2d7eecd133c87a7c616328a217b66a", features = ["copy_key", "secure"] }
-fastcrypto-zkp = { git = "https://github.com/MystenLabs/fastcrypto", rev = "3ac9fa490f2d7eecd133c87a7c616328a217b66a", default-features = false }
+fastcrypto = { path = "../../../fastcrypto/fastcrypto", features = ["copy_key", "secure"] }
+fastcrypto-zkp = { path = "../../../fastcrypto/fastcrypto-zkp", default-features = false }
 fastrand = { version = "1", default-features = false }
 fd-lock = { version = "3", default-features = false }
 fdlimit = { version = "0.2", default-features = false }
@@ -846,9 +846,9 @@ ethnum = { version = "1", default-features = false }
 event-listener = { version = "2", default-features = false }
 eyre = { version = "0.6", features = ["auto-install", "track-caller"] }
 fail = { version = "0.4", default-features = false }
-fastcrypto = { git = "https://github.com/MystenLabs/fastcrypto", rev = "3ac9fa490f2d7eecd133c87a7c616328a217b66a", features = ["copy_key", "secure"] }
-fastcrypto-derive = { git = "https://github.com/MystenLabs/fastcrypto", rev = "3ac9fa490f2d7eecd133c87a7c616328a217b66a", default-features = false }
-fastcrypto-zkp = { git = "https://github.com/MystenLabs/fastcrypto", rev = "3ac9fa490f2d7eecd133c87a7c616328a217b66a", default-features = false }
+fastcrypto = { path = "../../../fastcrypto/fastcrypto", features = ["copy_key", "secure"] }
+fastcrypto-derive = { path = "../../../fastcrypto/fastcrypto-derive", default-features = false }
+fastcrypto-zkp = { path = "../../../fastcrypto/fastcrypto-zkp", default-features = false }
 fastrand = { version = "1", default-features = false }
 fd-lock = { version = "3", default-features = false }
 fdlimit = { version = "0.2", default-features = false }

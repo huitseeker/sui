@@ -2471,7 +2471,6 @@ dependencies = [
 [[package]]
 name = "fastcrypto"
 version = "0.1.4"
-source = "git+https://github.com/MystenLabs/fastcrypto?rev=3ac9fa490f2d7eecd133c87a7c616328a217b66a#3ac9fa490f2d7eecd133c87a7c616328a217b66a"
 dependencies = [
  "aes",
  "aes-gcm",
@@ -2512,7 +2511,6 @@ dependencies = [
 [[package]]
 name = "fastcrypto-derive"
 version = "0.1.2"
-source = "git+https://github.com/MystenLabs/fastcrypto?rev=3ac9fa490f2d7eecd133c87a7c616328a217b66a#3ac9fa490f2d7eecd133c87a7c616328a217b66a"
 dependencies = [
  "proc-macro2 1.0.47",
  "quote 1.0.21",
@@ -2522,7 +2520,6 @@ dependencies = [
 [[package]]
 name = "fastcrypto-zkp"
 version = "0.1.0"
-source = "git+https://github.com/MystenLabs/fastcrypto?rev=3ac9fa490f2d7eecd133c87a7c616328a217b66a#3ac9fa490f2d7eecd133c87a7c616328a217b66a"
 dependencies = [
  "ark-bls12-381",
  "ark-ec",
